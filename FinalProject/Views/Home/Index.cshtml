@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<Users> signInManager;
+@model FinalProject.Models.Users
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">მოგესალმებით!</h1>
+    </div>
+    <div class="container mt-4">
+        <h2 class="mb-4">თქვენი მონაცემები</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">სრული სახელი</th>
+                        <th scope="col">ID ნომერი</th>
+                        <th scope="col">ტელეფონი</th>
+                        <th scope="col">იმეილი</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.FirstName @Model.FullName</td>
+                        <td>@Model.IdNumber</td>
+                        <td>@Model.PhoneNumber</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center mt-4" role="alert">
+        გთხოვთ, გაიაროთ <a href="/Account/Login" class="alert-link">ავტორიზაცია</a>, რათა იხილოთ თქვენი მონაცემები.
+    </div>
+}
